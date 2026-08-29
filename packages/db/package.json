@@ -1,0 +1,22 @@
+{
+  "name": "@nazareth/db",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PostgreSQL data layer: connection pool, migration runner, migrations DDL, seed data, row types",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "migrate": "tsx src/migrate.ts",
+    "migrate:test": "tsx src/migrate.ts --db test",
+    "seed": "tsx src/seed.ts"
+  },
+  "dependencies": {
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/pg": "^8.11.6",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
+  }
+}

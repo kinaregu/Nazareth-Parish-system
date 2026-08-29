@@ -1,0 +1,32 @@
+{
+  "name": "nazareth-chms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nazareth Parish Church — Church Management System (ChMS)",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "db:up": "node scripts/dev-db.mjs up",
+    "db:down": "node scripts/dev-db.mjs down",
+    "db:status": "node scripts/dev-db.mjs status",
+    "db:reset": "node scripts/dev-db.mjs reset",
+    "db:migrate": "npm run migrate -w @nazareth/db",
+    "db:migrate:test": "npm run migrate:test -w @nazareth/db",
+    "db:seed": "npm run seed -w @nazareth/db",
+    "db:setup": "npm run db:migrate && npm run db:seed",
+    "dev": "npm run dev -w @nazareth/web",
+    "build": "npm run build -w @nazareth/web",
+    "start": "npm run start -w @nazareth/web",
+    "test": "npm run test -w @nazareth/core && npm run test -w @nazareth/web",
+    "test:core": "npm run test -w @nazareth/core",
+    "test:web": "npm run test -w @nazareth/web"
+  },
+  "devDependencies": {
+    "embedded-postgres": "^18.4.0-beta.17"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,70 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Nazareth Parish ChMS — local / staging stack
+#
+#   cp .env.example .env   # then set CSRF_SECRET etc.
+#   docker compose up --build
+#
+# - db:      PostgreSQL 16 (persistent volume)
+# - db-init: one-shot migration + demo seed (SEED_DEMO=true by default)
+# - web:     the ChMS (UI + REST API) on port 3000
+#
+# For production use Render/Railway/your own VPS — see docs/DEPLOYMENT.md.
+# ─────────────────────────────────────────────────────────────────────────────
+
+x-app-env: &app-env
+  NODE_ENV: production
+  DATABASE_URL: postgresql://nazareth:${POSTGRES_PASSWORD:-nazareth}@db:5432/nazareth
+  CSRF_SECRET: ${CSRF_SECRET:?Set CSRF_SECRET in .env (openssl rand -hex 32)}
+  APP_URL: ${APP_URL:-http://localhost:3000}
+  SESSION_IDLE_MINUTES: ${SESSION_IDLE_MINUTES:-1440}
+  SESSION_REMEMBER_DAYS: ${SESSION_REMEMBER_DAYS:-30}
+  FILE_STORAGE_PATH: /data/files
+  FILE_MAX_SIZE_MB: ${FILE_MAX_SIZE_MB:-8}
+  FILE_ALLOWED_MIMES: ${FILE_ALLOWED_MIMES:-image/png,image/jpeg,image/webp,application/pdf}
+  BACKUP_PATH: /data/backups
+  BACKUP_RETENTION: ${BACKUP_RETENTION:-7}
+  MAIL_PROVIDER: ${MAIL_PROVIDER:-console}
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: nazareth
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nazareth}
+      POSTGRES_DB: nazareth
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nazareth -d nazareth"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  db-init:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      <<: *app-env
+      SEED_DEMO: ${SEED_DEMO:-true}
+    volumes:
+      - appdata:/data
+    restart: "no"
+
+  web:
+    build: .
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+    environment:
+      <<: *app-env
+    volumes:
+      - appdata:/data
+    ports:
+      - "${PORT:-3000}:3000"
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  appdata:
