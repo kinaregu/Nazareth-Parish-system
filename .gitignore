@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Builds
+.next/
+out/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Environment (never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Runtime data (file storage, backups, dev outbox artifacts)
+.data/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store

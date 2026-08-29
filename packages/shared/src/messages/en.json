@@ -1,0 +1,42 @@
+{
+  "app": { "name": "Nazareth Parish ChMS", "tagline": "Serving the family of God" },
+  "nav": {
+    "dashboard": "Dashboard", "members": "Members", "all_members": "All Members", "add_member": "Add Member",
+    "families": "Families", "visitors": "Visitors", "import": "Import", "registrations": "Registrations",
+    "attendance": "Attendance", "services": "Services", "sessions": "Attendance Sessions", "attendance_reports": "Attendance Reports",
+    "ministries": "Ministries", "departments": "Departments", "groups": "Groups",
+    "events": "Events", "calendar": "Calendar", "registrations_events": "Registrations",
+    "communication": "Communication", "announcements": "Announcements", "notifications": "Notifications", "templates": "Message Templates",
+    "pastoral": "Pastoral Care", "cases": "Cases", "followups": "Follow-ups", "prayer": "Prayer Requests",
+    "finance": "Finance", "giving": "Giving", "funds": "Funds", "expenses": "Expenses", "financial_reports": "Financial Reports",
+    "reports": "Reports", "administration": "Administration", "users": "Users", "roles": "Roles & Permissions",
+    "audit_logs": "Audit Logs", "settings": "Settings", "backups": "Backups",
+    "profile": "My Profile", "logout": "Sign out"
+  },
+  "actions": {
+    "create": "Create", "edit": "Edit", "delete": "Delete", "save": "Save", "cancel": "Cancel",
+    "confirm": "Confirm", "search": "Search", "filter": "Filter", "export": "Export", "import": "Import",
+    "view": "View", "back": "Back", "submit": "Submit", "approve": "Approve", "reject": "Reject",
+    "pay": "Mark paid", "reverse": "Reverse", "archive": "Archive", "restore": "Restore", "convert": "Convert to member"
+  },
+  "common": {
+    "loading": "Loading…", "no_data": "No records found.", "required": "Required", "optional": "Optional",
+    "yes": "Yes", "no": "No", "all": "All", "none": "None", "name": "Name", "email": "Email", "phone": "Phone",
+    "date": "Date", "status": "Status", "amount": "Amount", "actions": "Actions", "total": "Total",
+    "page": "Page", "of": "of", "results": "results", "per_page": "Per page"
+  },
+  "errors": {
+    "validation": "Please correct the highlighted fields.",
+    "forbidden": "You do not have permission to perform this action.",
+    "not_found": "The record you are looking for was not found.",
+    "unauthorized": "Please sign in to continue.",
+    "network": "Unable to load data. Please try again.",
+    "rate_limited": "Too many attempts. Please try again later."
+  },
+  "toast": {
+    "created": "{entity} created successfully.",
+    "updated": "{entity} updated successfully.",
+    "deleted": "{entity} archived successfully.",
+    "failed": "Something went wrong. Please try again."
+  }
+}
